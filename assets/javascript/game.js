@@ -14,6 +14,7 @@ var wins = 0;
 var loses = 0;
 var counter = 0
 var guesses = 10;
+var collectionOfLetters = [];
 
 
 //Array of letters to choose from.
@@ -35,43 +36,47 @@ let compLetter = compGen();
 
 console.log(compLetter);
 document.onkeyup = function (event){
-var pressedKey = event.key;
-console.log(compLetter)
+    var pressedKey = event.key;
+    console.log(compLetter)
 
 
 
 
-if (compLetter === pressedKey){
-    console.log("You got it!");
-    wins++;
-    counter++;
-    guesses--;
-    
+    if (compLetter === pressedKey){
+        console.log("You got it!");
+        wins++;
+        counter++;
+        guesses--;
+        
 
-    compLetter = compGen();
-} else if (guesses === 0){
-    guesses = 10;
-    counter = 0;
-}
+        compLetter = compGen();
+    } else if (guesses === 0){
+        guesses = 10;
+        counter = 0;
+        loses = 0;
+        collectionOfLetters = [];
 
-else{
-    console.log("Na you suck!")
-    loses++;
-    counter++;
-    guesses--
-}
+    }
 
-const collectionOfLetters = [];
+    else{
+        console.log("Na you suck!")
+        loses++;
+        counter++;
+        guesses--
+    }
 
-collectionOfLetters.push(pressedKey);
+    // var collectionOfLetters = [];
 
+    collectionOfLetters.push(pressedKey);
 
-inputText.textContent = "You chose: " + collectionOfLetters;
+    inputText.textContent = "You chose: " + collectionOfLetters;
 
-winsText.textContent = "Wins: " + wins;
-losesText.textContent = "Loses: " + loses;
-if (counter === 1){
-guessesText.textContent = "You guessed " + counter + " time. You now have " + guesses + " guesses left."
-} else if (guesses === 1) {guessesText.textContent = "You guessed " + counter + " times. You now have " + guesses + " guess left."}
-else{guessesText.textContent = "You guessed " + counter + " times. You now have " + guesses + " guesses left."}
+    winsText.textContent = "Wins: " + wins;
+    losesText.textContent = "Loses: " + loses;
+    if (counter === 1){
+        guessesText.textContent = "You guessed " + counter + " time. You now have " + guesses + " guesses left."
+    } else if (guesses === 1) {
+        guessesText.textContent = "You guessed " + counter + " times. You now have " + guesses + " guess left."}
+    else {  
+        guessesText.textContent = "You guessed " + counter + " times. You now have " + guesses + " guesses left."}
 }
